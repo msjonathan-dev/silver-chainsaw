@@ -94,7 +94,7 @@
       let stocks = JSON.parse(localStorage.getItem("stocks")) || [];
 
       async function fetchStockPrice(symbol) {
-        const apiKey = "YOUR_API_KEY"; // replace with your Alpha Vantage key
+        const apiKey = "GH2PHS1I1BQ4G267"; // replace with your Alpha Vantage key
         const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`;
         
         try {
