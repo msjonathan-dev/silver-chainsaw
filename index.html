@@ -9,6 +9,7 @@
       background: #f4f4f9;
       margin: 0;
       padding: 0;
+      transition: background 0.3s, color 0.3s;
     }
 
     .container {
@@ -18,6 +19,7 @@
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
     }
 
     h1 {
@@ -63,6 +65,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.3s, color 0.3s;
     }
 
     .stock-info {
@@ -87,9 +90,53 @@
     li button:hover {
       background: #990000;
     }
+
+    /* Toggle button */
+    #themeToggle {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      padding: 8px 12px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    #themeToggle:hover {
+      background: #555;
+    }
+
+    /* Night mode styles */
+    body.night {
+      background: #121212;
+      color: #f4f4f9;
+    }
+
+    body.night .container {
+      background: #1e1e1e;
+      color: #f4f4f9;
+    }
+
+    body.night li {
+      background: #2a2a2a;
+      color: #f4f4f9;
+    }
+
+    body.night button {
+      background: #0077cc;
+    }
+
+    body.night #themeToggle {
+      background: #f4f4f9;
+      color: #121212;
+    }
   </style>
 </head>
 <body>
+  <button id="themeToggle">🌙 Night Mode</button>
+
   <div class="container">
     <h1>My Stock Picks</h1>
     
@@ -107,6 +154,7 @@
     document.addEventListener("DOMContentLoaded", () => {
       const stockForm = document.getElementById("stockForm");
       const stockList = document.getElementById("stockList");
+      const themeToggle = document.getElementById("themeToggle");
 
       let stocks = JSON.parse(localStorage.getItem("stocks")) || [];
 
@@ -174,9 +222,22 @@
         }
       });
 
+      // Theme toggle
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("night");
+        if (document.body.classList.contains("night")) {
+          themeToggle.textContent = "☀️ Day Mode";
+        } else {
+          themeToggle.textContent = "🌙 Night Mode";
+        }
+      });
+
       renderStocks();
     });
   </script>
+</body>
+</html>
+
 </body>
 </html>
 
